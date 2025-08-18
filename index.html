@@ -101,82 +101,49 @@
       50%{ transform:translateY(10px) rotateY(180deg); }
     }
 
-    /* ====== PANELS & REVEAL ====== */
-    .panel{
-      background: var(--panel);
-      border:1px solid var(--panel-border);
-      border-radius:20px; padding:28px; max-width:1100px; margin:0 auto;
-      box-shadow: 0 0 30px rgba(0,247,255,.15);
-      backdrop-filter: blur(6px);
-    }
-    .reveal{ opacity:0; transform: translateY(24px) scale(.98); transition:.8s ease; }
-    .reveal.show{ opacity:1; transform:none; }
+   .about-section {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-family: 'Orbitron', sans-serif;
+  color: #e0f7fa;
+}
 
-    /* ====== ABOUT – CHOOSE YOUR PATH (Planets) ====== */
-    .about-head{ text-align:center; margin-bottom:18px; }
-    .section-title{
-      font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom:10px; color: var(--gold);
-      text-shadow: 0 0 18px rgba(242,169,0,.3);
-    }
-    .planets{
-      display:flex; flex-wrap:wrap; justify-content:center; gap:28px; margin-top:18px;
-    }
-    .planet{
-      width:132px; height:132px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-      background: radial-gradient(circle at 35% 35%, #666, #222 60%);
-      border:1px solid rgba(255,255,255,.15);
-      box-shadow: inset -8px -8px 22px rgba(0,0,0,.4), 0 0 26px rgba(0,247,255,.25);
-      cursor:pointer; transition: transform .35s, box-shadow .35s, filter .35s; user-select:none;
-    }
-    .planet:hover{ transform: translateY(-6px) scale(1.05) rotate(4deg); box-shadow: inset -10px -10px 26px rgba(0,0,0,.5), 0 0 36px rgba(0,247,255,.45); filter: saturate(1.2); }
-    .planet[data-info="education"]{ background: radial-gradient(circle at 35% 35%, #5f77ff, #1b1b3a 60%); }
-    .planet[data-info="skills"]{ background: radial-gradient(circle at 35% 35%, #21d4fd, #0b2830 60%); }
-    .planet[data-info="projects"]{ background: radial-gradient(circle at 35% 35%, #ff7ad9, #2b0e22 60%); }
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;
+}
 
-    #planet-info{ margin-top:22px; min-height:120px; color:#cfd7e0; line-height:1.6; }
-    #planet-info h3{ color: var(--cyan); margin-bottom:6px; }
+.about-intro {
+  font-size: 1.2rem;
+  margin-bottom: 3rem;
+  color: #80deea;
+}
 
-    /* ====== SKILLS – POWER CARDS ====== */
-    .skills-grid{
-      display:grid; gap:18px; margin-top:20px;
-      grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
-    }
-    .skill-card{
-      padding:22px; border-radius:16px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
-      position:relative; overflow:hidden; transition:.35s;
-    }
-    .skill-card:before{
-      content:""; position:absolute; inset:-2px; border-radius:16px;
-      background: radial-gradient(600px circle at var(--mx,50%) var(--my,50%), rgba(0,247,255,.22), transparent 35%);
-      opacity:0; transition: opacity .25s;
-    }
-    .skill-card:hover{ transform: translateY(-8px); box-shadow: 0 0 22px rgba(0,247,255,.25); }
-    .skill-card:hover:before{ opacity:1; }
-    .badge{ display:inline-block; padding:4px 10px; margin:6px 6px 0 0; border-radius:999px; font-size:.85rem; background:rgba(0,247,255,.16); border:1px solid rgba(0,247,255,.35); }
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
 
-    /* ====== PROJECTS – STORY MODE CARDS ====== */
-    .project-grid{
-      display:grid; gap:20px; margin-top:22px;
-      grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
-    }
-    .project-card{
-      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); border-radius:16px; overflow:hidden; transition:.35s; position:relative;
-    }
-    .project-card:hover{ transform: translateY(-6px); box-shadow: 0 0 20px rgba(255,170,0,.25); }
-    .project-header{ padding:18px; background:linear-gradient(90deg, rgba(255,170,0,.18), transparent); }
-    .project-header h4{ color:var(--gold); }
-    .project-body{ padding:18px; color:#dfe7f0; }
-    .stack{ margin-top:8px; }
-    .chip{ display:inline-block; padding:4px 10px; margin:4px 6px 0 0; border-radius:999px; background:rgba(255,170,0,.15); border:1px solid rgba(255,170,0,.35); font-size:.82rem; }
-    .story{ margin-top:12px; max-height:0; overflow:hidden; transition:max-height .5s ease; }
-    .project-card.open .story{ max-height:300px; }
-    .story p{ color:#ffd9a3; }
-    .toggle-btn{
-      margin-top:12px; background:transparent; border:1px solid rgba(255,255,255,.3); color:#fff; padding:8px 14px; border-radius:999px; cursor:pointer; transition:.25s;
-    }
-    .toggle-btn:hover{ border-color: var(--cyan); box-shadow: 0 0 16px rgba(0,247,255,.25); }
+.about-card {
+  background: rgba(0, 20, 40, 0.8);
+  border: 2px solid #00e5ff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 0 20px #00e5ff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.about-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 40px #00f0ff, 0 0 60px #00f0ff;
+}
+
+.about-card h3 {
+  margin-bottom: 1rem;
+  color: #00e5ff;
+}
     /* ====== QUIZ ====== */
     .quiz-wrap{
       max-width:620px; margin:0 auto; background:var(--panel); border:1px solid var(--panel-border); border-radius:16px; padding:22px;
@@ -304,116 +271,26 @@
     </div>
   </section>
 
-  <!-- ====== ABOUT – CHOOSE YOUR PATH ====== -->
-  <section id="about">
-    <div class="panel reveal">
-      <div class="about-head">
-        <h2 class="section-title">About Me — Choose Your Path</h2>
-        <p>Click a planet to unlock a chapter of my journey.</p>
-      </div>
-      <div class="planets">
-        <div class="planet" data-info="education" title="Education">🎓 Education</div>
-        <div class="planet" data-info="skills" title="Skills">⚡ Skills</div>
-        <div class="planet" data-info="projects" title="Projects">🚀 Projects</div>
-      </div>
-      <div id="planet-info"></div>
+  <!-- About Me Section -->
+<section id="about" class="about-section">
+  <h2 class="section-title">🚀 About Me</h2>
+  <p class="about-intro">My journey written across the stars.</p>
+  
+  <div class="about-grid">
+    <div class="about-card">
+      <h3>🎓 Education</h3>
+      <p>I studied XYZ, diving deep into the universe of code and creative problem-solving.</p>
     </div>
-  </section>
-
-  <!-- ====== SKILLS – POWER CARDS ====== -->
-  <section id="skills">
-    <div class="panel reveal">
-      <h2 class="section-title">Superpowers</h2>
-      <div class="skills-grid" id="skillsGrid">
-        <div class="skill-card">
-          <h3>Frontend</h3>
-          <div class="stack">
-            <span class="badge">HTML</span>
-            <span class="badge">CSS</span>
-            <span class="badge">JavaScript</span>
-            <span class="badge">React</span>
-          </div>
-        </div>
-        <div class="skill-card">
-          <h3>Backend</h3>
-          <div class="stack">
-            <span class="badge">Node.js</span>
-            <span class="badge">Express</span>
-            <span class="badge">REST APIs</span>
-            <span class="badge">Auth/JWT</span>
-          </div>
-        </div>
-        <div class="skill-card">
-          <h3>Databases</h3>
-          <div class="stack">
-            <span class="badge">MongoDB</span>
-            <span class="badge">Mongoose</span>
-            <span class="badge">SQL</span>
-          </div>
-        </div>
-        <div class="skill-card">
-          <h3>AI & Tools</h3>
-          <div class="stack">
-            <span class="badge">Soul.ai</span>
-            <span class="badge">Outlier.ai</span>
-            <span class="badge">Git/GitHub</span>
-            <span class="badge">Docker</span>
-          </div>
-        </div>
-      </div>
+    <div class="about-card">
+      <h3>🛠 Skills</h3>
+      <p>Frontend (React, HTML, CSS, JS), Backend (Node.js, MongoDB), plus design and AI tools.</p>
     </div>
-  </section>
-
-  <!-- ====== PROJECTS – STORY MODE ====== -->
-  <section id="projects">
-    <div class="panel reveal">
-      <h2 class="section-title">Projects Gallery — Story Mode</h2>
-
-      <div class="project-grid">
-        <article class="project-card">
-          <div class="project-header"><h4>Superhero Resume Website</h4></div>
-          <div class="project-body">
-            <p>Hero-themed portfolio built with HTML, CSS, and JavaScript.</p>
-            <div class="stack">
-              <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span>
-            </div>
-            <div class="story">
-              <p>I styled sections with comic panel vibes, adding bold shadows, action cues, and smooth transitions. This was my sandbox for playful UI while staying accessible and fast.</p>
-            </div>
-            <button class="toggle-btn" aria-expanded="false">Read Story</button>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-header"><h4>MERN Books Library App</h4></div>
-          <div class="project-body">
-            <p>Full CRUD library app with auth and roles.</p>
-            <div class="stack">
-              <span class="chip">MongoDB</span><span class="chip">Express</span><span class="chip">React</span><span class="chip">Node</span><span class="chip">JWT</span>
-            </div>
-            <div class="story">
-              <p>I designed REST endpoints, JWT auth, and pagination. On the frontend I focused on clean state, reusable components, and optimistic UI for snappy feedback.</p>
-            </div>
-            <button class="toggle-btn" aria-expanded="false">Read Story</button>
-          </div>
-        </article>
-
-        <article class="project-card">
-          <div class="project-header"><h4>AI Training Dashboard</h4></div>
-          <div class="project-body">
-            <p>Custom tools for training and QA of models (Soul.ai / Outlier.ai freelance).</p>
-            <div class="stack">
-              <span class="chip">Node</span><span class="chip">React</span><span class="chip">CSV/JSON</span><span class="chip">Review Pipelines</span>
-            </div>
-            <div class="story">
-              <p>Built flows to label, validate, and review data with bulk actions and hotkeys. The focus was speed, clarity, and auditability.</p>
-            </div>
-            <button class="toggle-btn" aria-expanded="false">Read Story</button>
-          </div>
-        </article>
-      </div>
+    <div class="about-card">
+      <h3>🚀 Projects</h3>
+      <p>Built apps and websites that feel like missions—turning ideas into living digital worlds.</p>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ====== MINI FUN ZONE – QUIZ + EASTER EGG ====== -->
   <section id="quiz">
@@ -641,5 +518,6 @@
   </script>
 </body>
 </html>
+
 
 
