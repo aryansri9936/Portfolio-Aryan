@@ -1,147 +1,402 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Aryan Srivastava | Full-Stack Developer</title>
-  <link rel="stylesheet" href="style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aryan Srivastava | Full-Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Canvas for starfield and constellation -->
-  <canvas id="starfield"></canvas>
-  <canvas id="constellation"></canvas>
-
-  <!-- HERO SECTION -->
-  <section id="hero" class="section">
-    <div class="hero-inner reveal">
-      <h1 class="title">Aryan Srivastava</h1>
-      <p class="tagline">Code by day, Hero by night</p>
-      <div class="scroll-indicator" title="Scroll" id="scrollHint"></div>
+    <!-- Background Layers -->
+    <div class="space-background">
+        <div class="starfield" id="starfield"></div>
+        <div class="nebula-layer"></div>
+        <div class="cosmic-dust"></div>
+        <div class="aurora-waves"></div>
+        <div class="constellation-layer" id="constellations"></div>
+        <div class="floating-debris" id="debris"></div>
     </div>
-  </section>
 
-  <!-- About Me -->
-  <section id="about" class="section">
-    <h2>About Me</h2>
-    <p>I’m Aryan Srivastava, a full-stack developer passionate about turning ideas into clean, scalable, and user-friendly web applications. I enjoy working across both frontend and backend, building projects with technical depth and creativity.</p>
-    <p>Inspired by fashion, action films, and futuristic tech, I aim to craft work that embodies precision and imagination—traits that define me as a developer and a person.</p>
-  </section>
+    <!-- Navigation Satellites -->
+    <nav class="space-nav" id="spaceNav">
+        <div class="nav-satellite" data-target="hero">
+            <div class="satellite-body"></div>
+            <span class="nav-label">Home</span>
+        </div>
+        <div class="nav-satellite" data-target="about">
+            <div class="satellite-body"></div>
+            <span class="nav-label">About</span>
+        </div>
+        <div class="nav-satellite" data-target="skills">
+            <div class="satellite-body"></div>
+            <span class="nav-label">Skills</span>
+        </div>
+        <div class="nav-satellite" data-target="experience">
+            <div class="satellite-body"></div>
+            <span class="nav-label">Experience</span>
+        </div>
+        <div class="nav-satellite" data-target="projects">
+            <div class="satellite-body"></div>
+            <span class="nav-label">Projects</span>
+        </div>
+        <div class="nav-satellite" data-target="contact">
+            <div class="satellite-body"></div>
+            <span class="nav-label">Contact</span>
+        </div>
+    </nav>
 
-  <!-- Education -->
-  <section id="education" class="section">
-    <h2>Education</h2>
-    <ul>
-      <li><strong>BA in Arts</strong> – St. Andrews PG College, Gorakhpur</li>
-      <li><strong>Intermediate (ISC, 2022)</strong> – Apex Public School</li>
-      <li><strong>High School (ICSE, 2020)</strong> – Apex Public School</li>
-      <li><strong>Full-Stack Web Development (2025)</strong> – Masai School</li>
-    </ul>
-  </section>
-
-  <!-- Experience -->
-  <section id="experience" class="section">
-    <h2>Experience</h2>
-    <ul>
-      <li><strong>Freelance Full-Stack AI Trainer</strong> – Soul.ai, Outlier.ai<br>
-        Trained AI systems and supported intelligent model development.</li>
-      <li><strong>Freelance Full-Stack Developer</strong> – Freelance.com<br>
-        Delivered full projects, APIs, UI, and deployment support.</li>
-    </ul>
-  </section>
-
-  <!-- Skills -->
-  <section id="skills" class="section">
-    <h2>Skills</h2>
-    <div class="card-grid">
-      <div class="card">
-        <h3>Frontend</h3>
-        <ul><li>HTML</li><li>CSS</li><li>JavaScript</li><li>React.js</li></ul>
-      </div>
-      <div class="card">
-        <h3>Backend</h3>
-        <ul><li>Node.js</li><li>Express.js</li></ul>
-      </div>
-      <div class="card">
-        <h3>Databases</h3>
-        <ul><li>MongoDB</li><li>SQL</li></ul>
-      </div>
-      <div class="card">
-        <h3>Other</h3>
-        <ul><li>Kotlin (Android)</li><li>Python (basic)</li><li>Git, GitHub</li><li>Docker (beginner)</li></ul>
-      </div>
+    <!-- Progress Fuel Bar -->
+    <div class="fuel-bar">
+        <div class="fuel-level" id="fuelLevel"></div>
+        <div class="fuel-indicator">FUEL</div>
     </div>
-  </section>
 
-  <!-- Projects -->
-  <section id="projects" class="section">
-    <h2>Projects</h2>
-    <div class="card-grid">
-      <div class="card">
-        <h3>MERN Books Library App</h3>
-        <p>Library management app with CRUD, authentication, MongoDB.</p>
-        <p><strong>Stack:</strong> React, Node, Express, MongoDB</p>
-      </div>
-      <div class="card">
-        <h3>Tiranga Quiz Website</h3>
-        <p>Interactive quiz with responsive UI and smooth navigation.</p>
-        <p><strong>Stack:</strong> HTML, CSS, JavaScript</p>
-      </div>
-      <div class="card">
-        <h3>Superhero-Inspired Resume</h3>
-        <p>Theme-based resume with comic UI and animations.</p>
-      </div>
-      <div class="card">
-        <h3>PiePayAutoBot4</h3>
-        <p>Kotlin Android app for automated transactions.</p>
-      </div>
-      <div class="card">
-        <h3>Portfolio Website</h3>
-        <p>Personal site showcasing skills and journey.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Hero Section -->
+    <section id="hero" class="space-section">
+        <div class="hero-content">
+            <div class="holographic-border">
+                <h1 class="cosmic-title">
+                    <span class="title-line">ARYAN</span>
+                    <span class="title-line">SRIVASTAVA</span>
+                </h1>
+                <p class="cosmic-subtitle">Full-Stack Developer</p>
+                <div class="tagline-container">
+                    <p class="cosmic-tagline">Code by day, Hero by night</p>
+                    <div class="energy-pulse"></div>
+                </div>
+            </div>
+            <div class="scroll-portal" id="scrollPortal">
+                <div class="portal-ring"></div>
+                <div class="portal-core"></div>
+                <span class="portal-text">EXPLORE</span>
+            </div>
+        </div>
+        <div class="floating-code-fragments" id="codeFragments"></div>
+    </section>
 
-  <!-- Quiz Section -->
-  <section id="quiz" class="section">
-    <div class="panel">
-      <h2 class="section-title">Know Me Quiz 🎯</h2>
-      <div class="quiz-wrap">
-        <p id="quiz-question">Loading…</p>
-        <div id="quiz-options"></div>
-        <p id="quiz-feedback"></p>
-      </div>
-      <div id="boom-container" aria-hidden="true"></div>
-    </div>
-  </section>
+    <!-- About Section -->
+    <section id="about" class="space-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">ABOUT TRANSMISSION</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="about-grid">
+                <div class="bio-panel">
+                    <div class="panel-header">
+                        <div class="data-stream"></div>
+                        <span>BIOGRAPHICAL DATA</span>
+                    </div>
+                    <div class="panel-content">
+                        <p class="bio-text">I'm Aryan Srivastava, a full-stack developer passionate about turning ideas into clean, scalable, and user-friendly web applications. I enjoy working across both frontend and backend, building projects that combine technical depth with a sense of creativity.</p>
+                        <p class="bio-text">Outside of coding, I draw inspiration from fashion, action films, and futuristic tech ideas. I want my work to reflect both precision and imagination—qualities that define me as a developer and as a person.</p>
+                    </div>
+                </div>
+                <div class="education-station">
+                    <div class="station-header">
+                        <div class="energy-core"></div>
+                        <span>EDUCATION MODULES</span>
+                    </div>
+                    <div class="education-modules">
+                        <div class="edu-module">
+                            <div class="module-indicator"></div>
+                            <div class="module-info">
+                                <strong>Full-Stack Web Development (2025)</strong>
+                                <span>Masai School</span>
+                            </div>
+                        </div>
+                        <div class="edu-module">
+                            <div class="module-indicator"></div>
+                            <div class="module-info">
+                                <strong>BA in Arts</strong>
+                                <span>St. Andrews PG College, Gorakhpur</span>
+                            </div>
+                        </div>
+                        <div class="edu-module">
+                            <div class="module-indicator"></div>
+                            <div class="module-info">
+                                <strong>Intermediate (ISC, 2022)</strong>
+                                <span>Apex Public School</span>
+                            </div>
+                        </div>
+                        <div class="edu-module">
+                            <div class="module-indicator"></div>
+                            <div class="module-info">
+                                <strong>High School (ICSE, 2020)</strong>
+                                <span>Apex Public School</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <div class="panel">
-      <h2 class="section-title">Contact — Cosmic Portal</h2>
-      <div class="portal">
-        <form id="contactForm">
-          <input type="text" name="name" placeholder="Your Name" required />
-          <input type="email" name="email" placeholder="Your Email" required />
-          <textarea name="message" placeholder="Your Message" required></textarea>
-          <button type="submit">Send Message</button>
-        </form>
-      </div>
-    </div>
-  </section>
+    <!-- Skills Solar System -->
+    <section id="skills" class="space-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">SKILL CONSTELLATION</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="solar-system">
+                <div class="central-star">
+                    <div class="star-core"></div>
+                    <div class="star-glow"></div>
+                    <span class="star-label">FULL-STACK</span>
+                </div>
+                <div class="orbit orbit-1">
+                    <div class="skill-planet frontend" data-skill="frontend">
+                        <div class="planet-surface"></div>
+                        <div class="planet-atmosphere"></div>
+                        <span class="planet-label">Frontend</span>
+                    </div>
+                </div>
+                <div class="orbit orbit-2">
+                    <div class="skill-planet backend" data-skill="backend">
+                        <div class="planet-surface"></div>
+                        <div class="planet-atmosphere"></div>
+                        <span class="planet-label">Backend</span>
+                    </div>
+                </div>
+                <div class="orbit orbit-3">
+                    <div class="skill-planet database" data-skill="database">
+                        <div class="planet-surface"></div>
+                        <div class="planet-atmosphere"></div>
+                        <span class="planet-label">Database</span>
+                    </div>
+                </div>
+                <div class="orbit orbit-4">
+                    <div class="skill-planet other" data-skill="other">
+                        <div class="planet-surface"></div>
+                        <div class="planet-atmosphere"></div>
+                        <span class="planet-label">Tools</span>
+                    </div>
+                </div>
+            </div>
+            <div class="skill-details" id="skillDetails">
+                <div class="detail-panel">
+                    <div class="panel-header">
+                        <span id="skillTitle">Select a planet to explore skills</span>
+                        <div class="close-btn" id="closeSkillDetails">×</div>
+                    </div>
+                    <div class="skill-list" id="skillList"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Social Media Buttons -->
-  <div class="social-panel">
-    <a href="mailto:aryansrivastava03520@gmail.com" class="social-btn">✉️ Email</a>
-    <a href="https://github.com/aryansri9936" target="_blank" class="social-btn">💻 GitHub</a>
-    <a href="https://www.linkedin.com/in/aryan-srivastava-32b88a28a" target="_blank" class="social-btn">🔗 LinkedIn</a>
-  </div>
+    <!-- Experience Timeline -->
+    <section id="experience" class="space-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">SPACE MISSIONS</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="timeline-container">
+                <div class="timeline-path"></div>
+                <div class="mission-stop">
+                    <div class="mission-marker"></div>
+                    <div class="mission-card">
+                        <div class="mission-header">
+                            <h3>Freelance Full-Stack AI Trainer</h3>
+                            <span class="mission-company">Soul.ai, Outlier.ai</span>
+                        </div>
+                        <p class="mission-description">Trained AI systems and supported intelligent model development.</p>
+                        <div class="mission-status">ACTIVE</div>
+                    </div>
+                </div>
+                <div class="mission-stop">
+                    <div class="mission-marker"></div>
+                    <div class="mission-card">
+                        <div class="mission-header">
+                            <h3>Freelance Full-Stack Developer</h3>
+                            <span class="mission-company">Freelance.com</span>
+                        </div>
+                        <p class="mission-description">Delivered full development projects including APIs, UI, and deployments.</p>
+                        <div class="mission-status">COMPLETED</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <footer>
-    © 2025 Aryan Srivastava • Full-Stack Developer
-  </footer>
+    <!-- Projects Space Station -->
+    <section id="projects" class="space-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">PROJECT STATIONS</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="space-stations">
+                <div class="station-grid">
+                    <div class="project-station" data-project="mern">
+                        <div class="station-structure">
+                            <div class="station-core"></div>
+                            <div class="station-modules"></div>
+                        </div>
+                        <div class="station-info">
+                            <h3>MERN Books Library App</h3>
+                            <p>Library management app with CRUD, authentication, MongoDB integration.</p>
+                            <div class="tech-stack">React, Node, Express, MongoDB</div>
+                        </div>
+                        <div class="docking-port"></div>
+                    </div>
+                    
+                    <div class="project-station" data-project="quiz">
+                        <div class="station-structure">
+                            <div class="station-core"></div>
+                            <div class="station-modules"></div>
+                        </div>
+                        <div class="station-info">
+                            <h3>Tiranga Quiz Website</h3>
+                            <p>Interactive quiz with responsive UI and smooth navigation.</p>
+                            <div class="tech-stack">HTML, CSS, JavaScript</div>
+                        </div>
+                        <div class="docking-port"></div>
+                    </div>
+                    
+                    <div class="project-station" data-project="resume">
+                        <div class="station-structure">
+                            <div class="station-core"></div>
+                            <div class="station-modules"></div>
+                        </div>
+                        <div class="station-info">
+                            <h3>Superhero-Inspired Resume</h3>
+                            <p>Theme-based resume with comic-style UI and animations.</p>
+                            <div class="tech-stack">Creative Design</div>
+                        </div>
+                        <div class="docking-port"></div>
+                    </div>
+                    
+                    <div class="project-station" data-project="android">
+                        <div class="station-structure">
+                            <div class="station-core"></div>
+                            <div class="station-modules"></div>
+                        </div>
+                        <div class="station-info">
+                            <h3>PiePayAutoBot4</h3>
+                            <p>Kotlin-based Android app for automated transactions.</p>
+                            <div class="tech-stack">Kotlin, Android</div>
+                        </div>
+                        <div class="docking-port"></div>
+                    </div>
+                    
+                    <div class="project-station" data-project="portfolio">
+                        <div class="station-structure">
+                            <div class="station-core"></div>
+                            <div class="station-modules"></div>
+                        </div>
+                        <div class="station-info">
+                            <h3>Portfolio Website</h3>
+                            <p>Personal site showcasing skills and career journey.</p>
+                            <div class="tech-stack">Web Technologies</div>
+                        </div>
+                        <div class="docking-port"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <!-- Scripts -->
-  <script src="app.js"></script>
+    <!-- Quiz Section -->
+    <section id="quiz" class="space-section quiz-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">KNOWLEDGE PROBE</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="quiz-terminal">
+                <div class="terminal-header">
+                    <div class="terminal-controls">
+                        <div class="control-dot"></div>
+                        <div class="control-dot"></div>
+                        <div class="control-dot"></div>
+                    </div>
+                    <span class="terminal-title">QUANTUM QUIZ v2.1</span>
+                </div>
+                <div class="terminal-body">
+                    <div class="quiz-display">
+                        <div class="question-counter" id="questionCounter">Question 1/4</div>
+                        <div class="question-text" id="questionText">Loading quantum data...</div>
+                        <div class="options-container" id="optionsContainer"></div>
+                        <div class="quiz-feedback" id="quizFeedback"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Terminal -->
+    <section id="contact" class="space-section">
+        <div class="section-container">
+            <div class="section-header">
+                <h2 class="section-title">COMMUNICATION PORTAL</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="communication-hub">
+                <div class="contact-terminal">
+                    <div class="terminal-screen">
+                        <div class="screen-header">
+                            <div class="screen-indicators">
+                                <div class="indicator active"></div>
+                                <div class="indicator active"></div>
+                                <div class="indicator"></div>
+                            </div>
+                            <span>SECURE CHANNEL ACTIVE</span>
+                        </div>
+                        <form id="contactForm" class="message-form">
+                            <div class="form-row">
+                                <input type="text" name="name" placeholder="TRANSMITTER NAME" required class="cosmic-input">
+                            </div>
+                            <div class="form-row">
+                                <input type="email" name="email" placeholder="SIGNAL FREQUENCY" required class="cosmic-input">
+                            </div>
+                            <div class="form-row">
+                                <textarea name="message" placeholder="MESSAGE PAYLOAD" required class="cosmic-textarea"></textarea>
+                            </div>
+                            <button type="submit" class="transmission-btn">
+                                <span class="btn-text">TRANSMIT MESSAGE</span>
+                                <div class="btn-energy"></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="contact-links">
+                    <div class="social-satellites">
+                        <a href="mailto:aryansrivastava03520@gmail.com" class="social-satellite email" target="_blank">
+                            <div class="satellite-core"></div>
+                            <span class="satellite-label">EMAIL</span>
+                        </a>
+                        <a href="https://github.com/aryansri9936" class="social-satellite github" target="_blank">
+                            <div class="satellite-core"></div>
+                            <span class="satellite-label">GITHUB</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/aryan-srivastava-32b88a28a" class="social-satellite linkedin" target="_blank">
+                            <div class="satellite-core"></div>
+                            <span class="satellite-label">LINKEDIN</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="space-footer">
+        <div class="footer-content">
+            <div class="footer-grid"></div>
+            <p>&copy; 2025 Aryan Srivastava • Full-Stack Developer • Exploring the Digital Universe</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Elements -->
+    <div class="shooting-stars" id="shootingStars"></div>
+    <div class="easter-eggs" id="easterEggs"></div>
+    <div class="mouse-follower" id="mouseFollower"></div>
+
+    <script src="app.js"></script>
 </body>
 </html>
