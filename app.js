@@ -511,4 +511,11 @@ window.addEventListener('scroll', debouncedScroll);
 // Preload animations and optimize performance
 requestAnimationFrame(() => {
     document.body.style.visibility = 'visible';
-});
+});document.querySelectorAll(".live-demo").forEach(btn => {
+    btn.addEventListener("click", function (e) {
+      e.preventDefault();
+      // Replace with your two demo links
+      window.open("https://github.com/aryansri9936/mern-books-backend", "_blank");
+      window.open("https://github.com/aryansri9936/mern-books-client", "_blank");
+    });
+  });
