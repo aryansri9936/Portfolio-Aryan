@@ -511,11 +511,12 @@ window.addEventListener('scroll', debouncedScroll);
 // Preload animations and optimize performance
 requestAnimationFrame(() => {
     document.body.style.visibility = 'visible';
-});document.querySelectorAll(".live-demo").forEach(btn => {
-    btn.addEventListener("click", function (e) {
+});document.querySelectorAll(".github-link").forEach(link => {
+    link.addEventListener("click", function(e) {
       e.preventDefault();
-      // Replace with your two demo links
+      // Your main GitHub repo
       window.open("https://github.com/aryansri9936/mern-books-backend", "_blank");
+      // Add a second GitHub-related link (e.g., issues, docs, or pages)
       window.open("https://github.com/aryansri9936/mern-books-client", "_blank");
     });
   });
