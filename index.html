@@ -1,312 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Aryan Srivastava | Full-Stack Developer</title>
-  <style>
-    /* ====== RESET ====== */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    :root{
-      --cyan:#00f7ff;
-      --gold:#f2a900;
-      --panel: rgba(255,255,255,0.06);
-      --panel-border: rgba(255,255,255,0.16);
-    }
-    html,body{ height:100%; scroll-behavior:smooth; }
-    body{
-      font-family: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background:#000; color:#fff; overflow-x:hidden;
-    }
-    section{ padding:96px 8%; position:relative; }
-
-    /* ====== GALAXY BACKGROUND LAYERS ====== */
-    .galaxy{ position:fixed; inset:0; z-index:-3; overflow:hidden; }
-    /* Big rotating container so stars never “end” */
-    .starfield{
-      position:absolute; top:50%; left:50%;
-      width:3200px; height:3200px; margin-left:-1600px; margin-top:-1600px;
-      transform-origin:center center;
-      animation:rotateField 140s linear infinite;
-    }
-    @keyframes rotateField { from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
-    .star{ position:absolute; width:2px; height:2px; background:#fff; border-radius:50%; opacity:.9; }
-
-    /* Nebula clouds (slow drifting gradients) */
-    .nebula, .nebula:before, .nebula:after{
-      position:absolute; content:""; inset:-20%;
-      background:
-        radial-gradient(ellipse at 30% 40%, rgba(0,120,255,.20), transparent 55%),
-        radial-gradient(ellipse at 70% 60%, rgba(255,0,180,.18), transparent 55%),
-        radial-gradient(ellipse at 50% 80%, rgba(0,255,200,.12), transparent 60%);
-      filter: blur(40px);
-      animation: nebulaDrift 120s ease-in-out infinite alternate;
-    }
-    .nebula:before{ animation-duration:150s; opacity:.6; }
-    .nebula:after { animation-duration:170s; opacity:.4; }
-    @keyframes nebulaDrift{
-      0%  { transform: translate3d(-5%, -3%, 0) scale(1); }
-      100%{ transform: translate3d(5%, 3%, 0)  scale(1.1); }
-    }
-
-    /* Meteors */
-    .meteor{
-      position:fixed; top:-80px;
-      width:160px; height:2px;
-      background:linear-gradient(90deg, #fff, rgba(255,255,255,0));
-      transform:rotate(45deg); opacity:.85;
-      pointer-events:none;
-      animation: meteorFly 2.2s linear forwards;
-      mix-blend-mode: screen;
-      z-index:-1;
-    }
-    @keyframes meteorFly{
-      to{ transform: translate(900px, 900px) rotate(45deg); opacity:0; }
-    }
-
-    /* ====== HERO (Superhero Title) ====== */
-    #hero{ height:100svh; display:grid; place-items:center; text-align:center; }
-    .hero-inner{ max-width:1000px; }
-    .title{
-      font-size: clamp(2.8rem, 6vw, 5rem);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      /* comic style: heavy outline via multiple shadows */
-      text-shadow:
-        0 0 0 #000, 0 0 24px rgba(0,247,255,.45),
-        2px 2px 0 #ff0077, -2px -2px 0 #00e0ff;
-      animation: titlePop .9s cubic-bezier(.2,.9,.2,1.3) both;
-    }
-    @keyframes titlePop{
-      0%{ transform: scale(.85) translateY(20px); opacity:0; }
-      60%{ transform: scale(1.08); opacity:1; }
-      100%{ transform: scale(1); }
-    }
-    .tagline{
-      margin-top:14px; font-size: clamp(1rem, 2.4vw, 1.4rem);
-      opacity:.9; color:#ddd;
-    }
-    .scroll-indicator{
-      margin:36px auto 0; width:36px; height:36px; position:relative; cursor:pointer;
-      transform-style:preserve-3d; animation: bob 1.6s ease-in-out infinite;
-    }
-    .scroll-indicator:before, .scroll-indicator:after{
-      content:""; position:absolute; left:50%; top:50%; translate:-50% -50%;
-      width:26px; height:26px; border-left:3px solid #fff; border-bottom:3px solid #fff; transform:rotate(-45deg);
-      box-shadow:0 0 10px rgba(255,255,255,.8);
-    }
-    .scroll-indicator:after{ top:70%; scale:.8; opacity:.8; }
-    @keyframes bob{
-      0%,100%{ transform:translateY(0) rotateY(0deg); }
-      50%{ transform:translateY(10px) rotateY(180deg); }
-    }
-
-   .about-section {
-  text-align: center;
-  padding: 4rem 2rem;
-  font-family: 'Orbitron', sans-serif;
-  color: #e0f7fa;
-}
-
-.section-title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  text-shadow: 0 0 10px #00e5ff, 0 0 20px #00e5ff;
-}
-
-.about-intro {
-  font-size: 1.2rem;
-  margin-bottom: 3rem;
-  color: #80deea;
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-}
-
-.about-card {
-  background: rgba(0, 20, 40, 0.8);
-  border: 2px solid #00e5ff;
-  border-radius: 15px;
-  padding: 2rem;
-  box-shadow: 0 0 20px #00e5ff;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.about-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 40px #00f0ff, 0 0 60px #00f0ff;
-}
-
-.about-card h3 {
-  margin-bottom: 1rem;
-  color: #00e5ff;
-}
-     /* Cards for Skills & Projects */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-      margin-top: 30px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(0, 255, 224, 0.3);
-      border-radius: 12px;
-      padding: 20px;
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 0 20px #00ffe0;
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-    }
-
-    ul {
-      margin-left: 20px;
-    }
-
-    /* ====== QUIZ ====== */
-    .quiz-wrap{
-      max-width:620px; margin:0 auto; background:var(--panel); border:1px solid var(--panel-border); border-radius:16px; padding:22px;
-    }
-    #quiz-question{ font-size:1.2rem; margin-bottom:10px; }
-    #quiz-options button{
-      display:block; width:100%; text-align:left; padding:12px 14px; margin:8px 0;
-      background:#141414; color:#fff; border:1px solid rgba(255,255,255,.18); border-radius:10px; cursor:pointer; transition:.22s;
-    }
-    #quiz-options button:hover{ background:#1d1d1d; border-color: var(--cyan); }
-    #quiz-feedback{ margin-top:8px; color:var(--gold); min-height:22px; }
-
-    /* ====== CONTACT – COSMIC PORTAL ====== */
-    .portal{
-      margin:16px auto 0; width:min(560px, 86vw); aspect-ratio:1/1; border-radius:50%; position:relative;
-      background: radial-gradient(circle at 50% 40%, rgba(0,247,255,.25), transparent 60%),
-                  radial-gradient(circle at 50% 60%, rgba(255,0,170,.25), transparent 60%);
-      border:1px solid rgba(255,255,255,.18);
-      box-shadow: inset 0 0 120px rgba(0,247,255,.18), 0 0 40px rgba(0,247,255,.25);
-      overflow:hidden;
-    }
-    .portal .ring{
-      position:absolute; inset:10%; border-radius:50%;
-      border:2px dashed rgba(255,255,255,.25);
-      animation: ringSpin 18s linear infinite;
-    }
-    .portal .ring.r2{ inset:22%; animation-duration: 28s; animation-direction: reverse; opacity:.7; }
-    @keyframes ringSpin{ to{ transform: rotate(360deg); } }
-
-    .portal form{
-      position:absolute; inset:22% 18% 18% 18%;
-      display:flex; flex-direction:column; gap:10px;
-    }
-    .portal input, .portal textarea{
-      padding:10px 12px; background:rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.25); color:#fff; border-radius:10px; outline:none;
-    }
-    .portal textarea{ resize: vertical; min-height:110px; }
-    .portal button{
-      padding:11px 14px; border:none; border-radius:999px; font-weight:700; cursor:pointer;
-      background: linear-gradient(90deg, var(--cyan), #56ffe6);
-      color:#001616; box-shadow: 0 0 22px rgba(0,247,255,.35);
-    }
-    .orbit{
-      position:absolute; inset:0; pointer-events:none;
-    }
-    .orbit a{
-      position:absolute; left:50%; top:50%; translate:-50% -50%;
-      text-decoration:none; color:#fff; font-size:1.2rem; pointer-events:auto;
-      transform-origin: 0 -220px; /* radius */
-      animation: orbit 16s linear infinite;
-      filter: drop-shadow(0 0 10px rgba(255,255,255,.55));
-    }
-    .orbit a:nth-child(2){ transform-origin:0 -220px; animation-duration:22s; animation-delay:-4s; }
-    .orbit a:nth-child(3){ transform-origin:0 -220px; animation-duration:26s; animation-delay:-8s; }
-    @keyframes orbit{ to{ transform: rotate(360deg) translate(-50%, -50%); } }
-
-    /* ====== FOOTER ====== */
-    footer{ padding:30px 8%; text-align:center; color:#bfc7d0; border-top:1px solid rgba(255,255,255,.1); margin-top:36px; }
-
-    /* ====== RESPONSIVE TWEAKS ====== */
-    @media (max-width:700px){
-      .planet{ width:112px; height:112px; }
-      .portal .ring{ inset:12%; }
-      .portal .ring.r2{ inset:26%; }
-      .orbit a{ transform-origin:0 -180px; }
-    }
-    /* Social Panel */
-.social-panel {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  padding: 1rem 2rem;
-  background: rgba(0, 0, 0, 0.4);
-  border: 2px solid rgba(0, 255, 255, 0.5);
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-  backdrop-filter: blur(6px);
-}
-
-.social-btn {
-  padding: 0.8rem 1.5rem;
-  font-size: 1rem;
-  color: #00f0ff;
-  text-decoration: none;
-  border: 2px solid #00f0ff;
-  border-radius: 10px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.social-btn:hover {
-  background: #00f0ff;
-  color: black;
-  box-shadow: 0 0 25px #00f0ff, 0 0 50px #00f0ff;
-  transform: translateY(-3px);
-}
-
-.social-btn:active {
-  animation: energyPulse 0.3s ease;
-}
-
-@keyframes energyPulse {
-  0% { box-shadow: 0 0 10px #00f0ff; }
-  50% { box-shadow: 0 0 40px #00f0ff, 0 0 80px #00f0ff; }
-  100% { box-shadow: 0 0 10px #00f0ff; }
-}
-  </style>
+  <link rel="stylesheet" href="style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- STARFIELD AND CONSTELLATIONS BACKGROUND -->
+  <canvas id="starfield"></canvas>
+  <canvas id="constellation"></canvas>
 
-  <!-- ====== BACKGROUND ====== -->
-  <div class="galaxy" aria-hidden="true">
-    <div class="starfield" id="starfield"></div>
-    <div class="nebula"></div>
-  </div>
-
-  <!-- ====== HERO ====== -->
+  <!-- HERO SECTION -->
   <section id="hero">
-    <div class="hero-inner reveal show">
+    <div class="hero-inner">
       <h1 class="title">Aryan Srivastava</h1>
       <p class="tagline">Code by day, Hero by night</p>
       <div class="scroll-indicator" title="Scroll" id="scrollHint"></div>
     </div>
   </section>
-
- <!-- About Me -->
+  
+  <!-- About Me -->
   <section id="about">
     <h2>About Me</h2>
-    <p>I’m Aryan Srivastava, a full-stack developer passionate about turning ideas into clean, scalable, and user-friendly web applications. 
-    I enjoy working across both frontend and backend, building projects that combine technical depth with a sense of creativity.</p>
-    <p>Outside of coding, I draw inspiration from fashion, action films, and futuristic tech ideas. 
-    I want my work to reflect both precision and imagination—qualities that define me as a developer and as a person.</p>
+    <p>
+      I’m Aryan Srivastava, a full-stack developer passionate about turning ideas into clean, scalable, and user-friendly web applications.
+      I enjoy working across both frontend and backend, building projects that combine technical depth with a sense of creativity.
+    </p>
+    <p>
+      Outside of coding, I draw inspiration from fashion, action films, and futuristic tech ideas. I want my work to reflect both precision and imagination—qualities that define me as a developer and as a person.
+    </p>
   </section>
 
   <!-- Education -->
@@ -383,230 +107,46 @@
     </div>
   </section>
 
-  <!-- ====== MINI FUN ZONE – QUIZ + EASTER EGG ====== -->
+  <!-- Quiz -->
   <section id="quiz">
-    <div class="panel reveal">
+    <div class="panel">
       <h2 class="section-title">Know Me Quiz 🎯</h2>
       <div class="quiz-wrap">
         <p id="quiz-question">Loading…</p>
         <div id="quiz-options"></div>
         <p id="quiz-feedback"></p>
       </div>
-      <!-- Comic boom container -->
       <div id="boom-container" aria-hidden="true"></div>
     </div>
   </section>
 
-  <!-- ====== CONTACT – COSMIC PORTAL ====== -->
+  <!-- Contact -->
   <section id="contact">
-    <div class="panel reveal">
+    <div class="panel">
       <h2 class="section-title">Contact — Cosmic Portal</h2>
-
       <div class="portal">
-        <div class="ring"></div>
-        <div class="ring r2"></div>
-
         <form id="contactForm">
           <input type="text" name="name" placeholder="Your Name" required />
           <input type="email" name="email" placeholder="Your Email" required />
           <textarea name="message" placeholder="Your Message" required></textarea>
           <button type="submit">Send Message</button>
         </form>
-
-       
       </div>
     </div>
   </section>
+
   <!-- Social Links Panel -->
-<div class="social-panel">
-  <a href="mailto:aryansrivastava03520@gmail.com" class="social-btn">✉️ Email</a>
-  <a href="https://github.com/aryansri9936" target="_blank" class="social-btn">💻 GitHub</a>
-  <a href="https://www.linkedin.com/in/aryan-srivastava-32b88a28a" target="_blank" class="social-btn">🔗 LinkedIn</a>
-</div>
+  <div class="social-panel">
+    <a href="mailto:aryansrivastava03520@gmail.com" class="social-btn">✉️ Email</a>
+    <a href="https://github.com/aryansri9936" target="_blank" class="social-btn">💻 GitHub</a>
+    <a href="https://www.linkedin.com/in/aryan-srivastava-32b88a28a" target="_blank" class="social-btn">🔗 LinkedIn</a>
+  </div>
 
-  <footer>© 2025 Aryan Srivastava • Full-Stack Developer</footer>
+  <footer>
+    © 2025 Aryan Srivastava • Full-Stack Developer
+  </footer>
 
-  <script>
-    /* ========= STARFIELD (endless rotate) ========= */
-    const starContainer = document.getElementById('starfield');
-    const STAR_COUNT = 850; // dense but performant (static DOM, container rotates)
-    const FIELD_SIZE = 3200;
-
-    for (let i=0; i<STAR_COUNT; i++){
-      const s = document.createElement('div');
-      s.className = 'star';
-      s.style.left = Math.random()*FIELD_SIZE + 'px';
-      s.style.top  = Math.random()*FIELD_SIZE + 'px';
-      // tiny randomized sizes for depth
-      const sz = Math.random() < .8 ? 2 : 3;
-      s.style.width = sz + 'px';
-      s.style.height = sz + 'px';
-      s.style.opacity = 0.7 + Math.random()*0.3;
-      starContainer.appendChild(s);
-    }
-
-    /* ========= Random meteors ========= */
-    function spawnMeteor(){
-      // ~60% chance to actually spawn at check
-      if(Math.random() < 0.6){
-        const m = document.createElement('div');
-        m.className = 'meteor';
-        m.style.left = (Math.random()*window.innerWidth*0.6) + 'px';
-        m.style.top  = (-40 - Math.random()*120) + 'px';
-        document.body.appendChild(m);
-        setTimeout(()=> m.remove(), 2400);
-      }
-    }
-    setInterval(spawnMeteor, 2600 + Math.random()*1700);
-
-    /* ========= Scroll reveal ========= */
-    const reveals = document.querySelectorAll('.reveal');
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting) e.target.classList.add('show');
-      });
-    }, { threshold: 0.18 });
-    reveals.forEach(el=> io.observe(el));
-
-    /* ========= Scroll indicator click ========= */
-    document.getElementById('scrollHint').addEventListener('click', ()=>{
-      document.getElementById('about').scrollIntoView({behavior:'smooth'});
-    });
-
-    /* ========= About planets: dynamic content ========= */
-    const planetInfo = document.getElementById('planet-info');
-    const infoData = {
-      education: `
-        <h3>Education</h3>
-        <ul>
-          <li><strong>High School (ICSE), 2020</strong> — Apex Public School</li>
-          <li><strong>Intermediate (ISC), 2022</strong> — Apex Public School</li>
-          <li><strong>BA (2025)</strong> — St. Andrews PG College, DDU Gorakhpur University</li>
-          <li><strong>Full-Stack Web Development (2025)</strong> — Masai School</li>
-        </ul>
-      `,
-      skills: `
-        <h3>Skills</h3>
-        <ul>
-          <li><strong>Frontend:</strong> HTML, CSS, JavaScript, React</li>
-          <li><strong>Backend:</strong> Node.js, Express, REST, JWT</li>
-          <li><strong>DB:</strong> MongoDB, Mongoose, SQL</li>
-          <li><strong>AI Trainer:</strong> Soul.ai, Outlier.ai</li>
-          <li><strong>Tools:</strong> Git, GitHub, Docker</li>
-        </ul>
-      `,
-      projects: `
-        <h3>Projects</h3>
-        <ul>
-          <li><strong>Superhero Resume</strong> — Themed portfolio (HTML/CSS/JS)</li>
-          <li><strong>MERN Library App</strong> — CRUD + Auth + Pagination</li>
-          <li><strong>AI Training Dashboard</strong> — Review + pipeline tools</li>
-          <li><strong>PiePayAutoBot4</strong> — Kotlin Android automation</li>
-        </ul>
-      `
-    };
-    document.querySelectorAll('.planet').forEach(p=>{
-      p.addEventListener('click', ()=>{
-        const key = p.getAttribute('data-info');
-        planetInfo.innerHTML = infoData[key] || '';
-        planetInfo.classList.add('show');
-      });
-    });
-
-    /* ========= Skills cards: pointer-follow glow ========= */
-    document.querySelectorAll('.skill-card').forEach(card=>{
-      card.addEventListener('pointermove', e=>{
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-        card.style.setProperty('--my', `${e.clientY - rect.top}px`);
-      });
-    });
-
-    /* ========= Projects: expand story panels ========= */
-    document.querySelectorAll('.project-card .toggle-btn').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const card = btn.closest('.project-card');
-        const open = card.classList.toggle('open');
-        btn.setAttribute('aria-expanded', open ? 'true':'false');
-        btn.textContent = open ? 'Hide Story' : 'Read Story';
-      });
-    });
-
-    /* ========= Quiz ========= */
-    const quizQuestions = [
-      { q:"Which movie genre inspires Aryan?", options:["Romance","Action","Comedy","Horror"], a:"Action" },
-      { q:"What was Aryan’s first creative website?", options:["Portfolio","Superhero Resume","Blog","Quiz App"], a:"Superhero Resume" },
-      { q:"Aryan is passionate about?", options:["Cooking","Fashion","Sports","Music"], a:"Fashion" },
-      { q:"Where did Aryan complete Full-Stack training?", options:["IIT Delhi","Masai School","NIT Warangal","IIIT Allahabad"], a:"Masai School" },
-    ];
-    let qi=0;
-    const qEl = document.getElementById('quiz-question');
-    const optsEl = document.getElementById('quiz-options');
-    const fbEl = document.getElementById('quiz-feedback');
-
-    function loadQ(){
-      const data = quizQuestions[qi];
-      qEl.textContent = data.q;
-      fbEl.textContent = '';
-      optsEl.innerHTML = '';
-      data.options.forEach(opt=>{
-        const b = document.createElement('button');
-        b.textContent = opt;
-        b.onclick = ()=> check(opt);
-        optsEl.appendChild(b);
-      });
-    }
-    function check(sel){
-      const correct = quizQuestions[qi].a;
-      if(sel===correct){ fbEl.textContent = '✅ Correct!'; fbEl.style.color='lightgreen'; }
-      else{ fbEl.textContent = '❌ Oops! It was ' + correct; fbEl.style.color='salmon'; }
-      setTimeout(()=>{
-        qi++;
-        if(qi<quizQuestions.length) loadQ();
-        else{
-          qEl.textContent = '🎉 You finished the quiz!';
-          optsEl.innerHTML = '';
-          fbEl.textContent = '';
-        }
-      },900);
-    }
-    loadQ();
-
-    /* ========= Easter egg: type “hero” to BOOM ========= */
-    let buffer = '';
-    const boomContainer = document.getElementById('boom-container');
-    function spawnBoom(){
-      const boom = document.createElement('div');
-      boom.textContent = 'BOOM!';
-      boom.style.position = 'fixed';
-      boom.style.left = (Math.random()*70+10) + 'vw';
-      boom.style.top  = (Math.random()*50+20) + 'vh';
-      boom.style.fontSize = 'clamp(2rem, 8vw, 6rem)';
-      boom.style.fontWeight = '900';
-      boom.style.color = '#ff3b8d';
-      boom.style.textShadow = '0 0 10px #fff, 0 0 30px #ff3b8d';
-      boom.style.transform = 'scale(.7) rotate(-6deg)';
-      boom.style.transition = 'transform .6s ease, opacity .9s ease';
-      boom.style.opacity = '1';
-      boom.style.pointerEvents = 'none';
-      boomContainer.appendChild(boom);
-      requestAnimationFrame(()=> boom.style.transform = 'scale(1.15) rotate(0deg)');
-      setTimeout(()=> boom.style.opacity = '0', 700);
-      setTimeout(()=> boom.remove(), 1600);
-    }
-    window.addEventListener('keydown', (e)=>{
-      buffer += e.key.toLowerCase();
-      if(buffer.length>4) buffer = buffer.slice(-4);
-      if(buffer === 'hero'){ spawnBoom(); buffer=''; }
-    });
-
-    /* ========= Contact form action ========= */
-    document.getElementById('contactForm').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      alert('Thanks! Your message has been launched through the portal. I will reply soon.');
-      e.target.reset();
-    });
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
 
